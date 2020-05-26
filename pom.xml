@@ -8,7 +8,8 @@
     <artifactId>verapdf-webapp-selenium-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <suit.file.default.chrome>testng.xml</suit.file.default.chrome>
+        <suit.file>testng.xml</suit.file>
+        <webdrivermanager.version>3.8.1</webdrivermanager.version>
     </properties>
     <build>
         <pluginManagement>
@@ -17,14 +18,19 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M4</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${suit.file}</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <source>12</source>
-                        <target>12</target>
+                        <source>11</source>
+                        <target>11</target>
                     </configuration>
                 </plugin>
             </plugins>
@@ -42,11 +48,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.0.0-alpha-5</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.0.0</version>
+            <version>${webdrivermanager.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
