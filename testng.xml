@@ -2,7 +2,7 @@
 <suite name="veraPDF Test Suite">
     <test name="AllTests">
         <packages>
-            <package name="com.verapdf-webapp-selenium-tests.*"/>
+            <package name="com.verapdf.selenium.test.*"/>
         </packages>
     </test>
 </suite>
