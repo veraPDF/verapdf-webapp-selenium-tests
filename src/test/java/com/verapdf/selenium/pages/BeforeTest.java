@@ -1,7 +1,7 @@
 package com.verapdf.selenium.pages;
 
 import com.verapdf.selenium.blocks.HomePage;
-import com.verapdf.selenium.blocks.UploadJob;
+import com.verapdf.selenium.blocks.UploadPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ public class BeforeTest {
     private static final String baseUrl = "https://verapdf.duallab.com/new/";
     public WebDriver driver;
     protected HomePage homePage;
-    protected UploadJob uploadJob;
+    protected UploadPage uploadPage;
 
     @BeforeClass
     public void setup() {
@@ -31,7 +31,7 @@ public class BeforeTest {
         driver.manage().timeouts().pageLoadTimeout(60 * 3, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         homePage = new HomePage(driver);
-        uploadJob = new UploadJob(driver);
+        uploadPage = new UploadPage(driver);
     }
 
     @AfterMethod
