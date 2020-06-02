@@ -1,4 +1,6 @@
 package com.verapdf.selenium.test.inspect;
 
-public class InspectFile {
+import com.verapdf.selenium.pages.BasePageTest;
+
+public class InspectFile extends BasePageTest {
 }
