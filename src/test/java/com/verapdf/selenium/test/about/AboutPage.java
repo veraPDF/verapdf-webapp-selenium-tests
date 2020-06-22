@@ -5,13 +5,22 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
+import static com.verapdf.selenium.blocks.BasePage.SELECTOR_ABOUT_PAGE_BUTTON;
+
 public class AboutPage extends BasePageTest {
-    public static final By SELECTOR_ABOUT_PAGE_BUTTON = By.cssSelector("a[href='/demo/about']");
+    private static final By SELECTOR_LINK_VERAPDF_GITHUB = By.linkText("veraPDF GitHub");
 
     @Test
     public void verifyAboutPage() {
         homePage.switchToUploadFile();
+        basePage.dataOnEachPages();
         driver.findElement(SELECTOR_ABOUT_PAGE_BUTTON).click();
-        Assert.assertEquals("veraPDF for WCAG", driver.getTitle());
+        String oldTab = driver.getWindowHandle();
+        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+        newTab.remove(oldTab);
+        driver.switchTo().window(newTab.get(0));
+        Assert.assertTrue(driver.findElement(SELECTOR_LINK_VERAPDF_GITHUB).isEnabled());
     }
 }

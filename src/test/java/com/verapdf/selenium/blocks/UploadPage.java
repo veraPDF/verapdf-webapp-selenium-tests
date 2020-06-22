@@ -7,9 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class UploadPage extends BasePage {
+    //public static final By SELECTOR_USE_CUSTOM_SETTINGS_CHECKBOX = ;
     public static final By SELECTOR_CONFIGURE_JOB_BUTTON = By.cssSelector("button[type='button']");
     public static final By SELECTOR_DROPZONE = By.cssSelector("input[accept='application/pdf']");
-    public static final By SELECTOR_DROPZONE_TEXT = By.xpath("//section[text()='Drop some PDF files here, or click to select files']");
+    public static final By SELECTOR_DROPZONE_TEXT = By.xpath("//section[text()='Drop a PDF file, or click to select a file\']");
     public static final By SELECTOR_UPLOAD_PDF_STEPPER = By.xpath("//span[text()='Upload PDF']");
     public static final By SELECTOR_UPLOAD_PDF_STEPPER_IS_ACTIVE = By.cssSelector("span > div[class='active']");
     public static final By SELECTOR_SELECT_SETTINGS_STEPPER = By.xpath("//span[text()='Select settings']");
@@ -21,7 +22,7 @@ public class UploadPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void uploadPdf(String filePath) {
+    public void uploadJob(String filePath) {
         Assert.assertEquals("veraPDF for WCAG", driver.getTitle());
         verifyElementPresentBySelector(SELECTOR_UPLOAD_PDF_STEPPER);
         verifyElementPresentBySelector(SELECTOR_UPLOAD_PDF_STEPPER_IS_ACTIVE);
