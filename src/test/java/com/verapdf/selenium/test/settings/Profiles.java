@@ -1,6 +1,7 @@
 package com.verapdf.selenium.test.settings;
 
 import com.verapdf.selenium.pages.BasePageTest;
+import com.verapdf.selenium.utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -31,6 +32,7 @@ public class Profiles extends BasePageTest {
         verifyElementPresentBySelector(SELECTOR_VALIDATION_PROFILE);
         Assert.assertTrue(driver.findElement(SELECTOR_DEFAULT_PROFILE_IS_WCAG_ALL).isDisplayed());
         driver.findElement(SELECTOR_JOBPROFILE_BUTTON).click();
+        Utils.captureScreenshot(driver, "ListOfProfiles");
         verifyElementPresentBySelector(SELECTOR_LISTBOX_OF_PROFILES);
         List<WebElement> allOptions = driver.findElements(SELECTOR_LISTBOX_OF_PROFILES);
         Assert.assertEquals(SELECTOR_LIST_OF_PROFILES, allOptions.get(0).getText());
