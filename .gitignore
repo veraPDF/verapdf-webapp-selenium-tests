@@ -23,8 +23,9 @@
 hs_err_pid*
 
 ### IntelliJ IDEA ###
-.idea\
+.idea/
 
-#Maven#
-target\
+# Ignore generated files
+target/
 *.iml
+screenshot/
