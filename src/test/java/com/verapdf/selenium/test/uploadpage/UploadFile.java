@@ -1,6 +1,7 @@
 package com.verapdf.selenium.test.uploadpage;
 
 import com.verapdf.selenium.pages.BasePageTest;
+import com.verapdf.selenium.utils.Utils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -27,8 +28,9 @@ public class UploadFile extends BasePageTest {
     @Test
     public void dropZoneIsFilled() {
         waitUntilElementIsPresent(SELECTOR_DROPZONE_TEXT_FILE_SIZE);
-        Assert.assertEquals("testFile.pdf - 22.81 KB", driver.findElement(SELECTOR_DROPZONE_FILE_NAME).getText());
+        Assert.assertEquals("testFile.pdf - 22.80 KB", driver.findElement(SELECTOR_DROPZONE_FILE_NAME).getText());
         Assert.assertTrue(driver.findElement(SELECTOR_CONFIGURE_JOB_BUTTON).isEnabled());
+        Utils.captureScreenshot(driver, "fileInDropzone");
     }
 
     @Test
@@ -37,5 +39,6 @@ public class UploadFile extends BasePageTest {
         driver.findElement(SELECTOR_HEADERS_LOGO).click();
         verifyElementPresentBySelector(SELECTOR_DROPZONE_TEXT);
         Assert.assertEquals(driver.findElement(SELECTOR_CONFIGURE_JOB_BUTTON).getAttribute("disabled"), "true");
+        Utils.captureScreenshot(driver, "dropzoneIsEmpty");
     }
 }

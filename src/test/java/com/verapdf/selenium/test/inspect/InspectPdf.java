@@ -1,6 +1,7 @@
 package com.verapdf.selenium.test.inspect;
 
 import com.verapdf.selenium.pages.BasePageTest;
+import com.verapdf.selenium.utils.Utils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -32,6 +33,7 @@ public class InspectPdf extends BasePageTest {
         List<WebElement> allOptions = driver.findElements(SELECTOR_LISTBOX_OF_PROFILES);
         Assert.assertEquals(SELECTOR_LIST_OF_PROFILES, allOptions.get(0).getText());
         driver.findElement(SELECTOR_WCAG21_EXTRA_PROFILE_IS_SELECTED).click();
+        Utils.captureScreenshot(driver, "WCAG_EXTRA_PROFILE");
         driver.findElement(SELECTOR_VALIDATE_BUTTON).click();
     }
 
@@ -46,6 +48,7 @@ public class InspectPdf extends BasePageTest {
         List<WebElement> allOptions = driver.findElements(SELECTOR_LISTBOX_OF_PROFILES);
         Assert.assertEquals(SELECTOR_LIST_OF_PROFILES, allOptions.get(0).getText());
         driver.findElement(SELECTOR_MACHINE_PROFILE_IS_SELECTED).click();
+        Utils.captureScreenshot(driver, "MACHINE_PROFILE");
         driver.findElement(SELECTOR_VALIDATE_BUTTON).click();
     }
 
@@ -60,6 +63,7 @@ public class InspectPdf extends BasePageTest {
         List<WebElement> allOptions = driver.findElements(SELECTOR_LISTBOX_OF_PROFILES);
         Assert.assertEquals(SELECTOR_LIST_OF_PROFILES, allOptions.get(0).getText());
         driver.findElement(SELECTOR_HUMAN_PROFILE_IS_SELECTED).click();
+        Utils.captureScreenshot(driver, "HUMAN_PROFILE");
         driver.findElement(SELECTOR_VALIDATE_BUTTON).click();
     }
 
@@ -74,6 +78,7 @@ public class InspectPdf extends BasePageTest {
         List<WebElement> allOptions = driver.findElements(SELECTOR_LISTBOX_OF_PROFILES);
         Assert.assertEquals(SELECTOR_LIST_OF_PROFILES, allOptions.get(0).getText());
         driver.findElement(SELECTOR_TAGGED_PDF_PROFILE_IS_SELECTED).click();
+        Utils.captureScreenshot(driver, "TAGGED_PROFILE");
         driver.findElement(SELECTOR_VALIDATE_BUTTON).click();
     }
 }
