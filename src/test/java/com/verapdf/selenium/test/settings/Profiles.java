@@ -10,8 +10,6 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.verapdf.selenium.blocks.SettingsPage.*;
-import static com.verapdf.selenium.blocks.UploadPage.SELECTOR_UPLOAD_PDF_STEPPER_IS_ACTIVE;
-
 
 public class Profiles extends BasePageTest {
     private static final String FOLDER = "src/test/resources/com/verapdf/selenium/test/settings/Profiles/";
@@ -24,11 +22,8 @@ public class Profiles extends BasePageTest {
     @Test
     public void allProfilesArePresent() {
         homePage.switchToUploadFile();
-        basePage.dataOnEachPages();
         uploadPage.uploadJob(PATH_FILE);
         settingsPage.switchToSettingsPage();
-        verifyElementPresentBySelector(SELECTOR_UPLOAD_PDF_STEPPER_IS_ACTIVE);
-        verifyElementPresentBySelector(SELECTOR_SELECT_SETTINGS_STEPPER_IS_ACTIVE);
         verifyElementPresentBySelector(SELECTOR_VALIDATION_PROFILE);
         Assert.assertTrue(driver.findElement(SELECTOR_DEFAULT_PROFILE_IS_WCAG_ALL).isDisplayed());
         driver.findElement(SELECTOR_JOBPROFILE_BUTTON).click();

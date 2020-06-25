@@ -1,9 +1,6 @@
 package com.verapdf.selenium.pages;
 
-import com.verapdf.selenium.blocks.BasePage;
-import com.verapdf.selenium.blocks.HomePage;
-import com.verapdf.selenium.blocks.SettingsPage;
-import com.verapdf.selenium.blocks.UploadPage;
+import com.verapdf.selenium.blocks.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +18,9 @@ public class BeforeTest {
     protected HomePage homePage;
     protected UploadPage uploadPage;
     protected SettingsPage settingsPage;
+    protected StatusPage statusPage;
+    protected SummaryPage summaryPage;
+    protected InspectPage inspectPage;
 
     @BeforeClass
     public void setup() {
@@ -38,6 +38,9 @@ public class BeforeTest {
         homePage = new HomePage(driver);
         uploadPage = new UploadPage(driver);
         settingsPage = new SettingsPage(driver);
+        statusPage = new StatusPage(driver);
+        summaryPage = new SummaryPage(driver);
+        inspectPage = new InspectPage(driver);
     }
 
     @AfterMethod
