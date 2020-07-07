@@ -1,0 +1,3 @@
+com\verapdf\selenium\pages\BeforeTest.class
+com\verapdf\selenium\test\HomePage.class
+com\verapdf\selenium\pages\BasePageTest.class
