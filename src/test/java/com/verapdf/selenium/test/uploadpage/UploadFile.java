@@ -3,7 +3,6 @@ package com.verapdf.selenium.test.uploadpage;
 import com.verapdf.selenium.pages.BasePageTest;
 import com.verapdf.selenium.utils.Utils;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.verapdf.selenium.blocks.BasePage.SELECTOR_HEADERS_LOGO;
@@ -19,13 +18,9 @@ public class UploadFile extends BasePageTest {
     private static final String INVALID_PDF = FOLDER + "HeaderIsNotPresent.pdf";
 
 
-    @BeforeMethod
-    public void uploadPdf() {
-        homePage.switchToUploadFile();
-    }
-
     @Test
     public void dropZoneIsFilled() {
+        homePage.switchToUploadFile();
         uploadPage.uploadJob(PATH_FILE);
         waitUntilElementIsPresent(SELECTOR_DROPZONE_TEXT_FILE_SIZE);
         Assert.assertEquals("testFile.pdf - 22.81 KB", driver.findElement(SELECTOR_DROPZONE_FILE_NAME).getText());
@@ -35,6 +30,7 @@ public class UploadFile extends BasePageTest {
 
     @Test
     public void returnToStaticUploadPage() {
+        homePage.switchToUploadFile();
         uploadPage.uploadJob(PATH_FILE);
         waitUntilElementIsPresent(SELECTOR_DROPZONE_TEXT_FILE_SIZE);
         driver.findElement(SELECTOR_HEADERS_LOGO).click();
@@ -45,6 +41,7 @@ public class UploadFile extends BasePageTest {
 
     @Test
     public void catchExceptionForInvalidPdf() {
+        homePage.switchToUploadFile();
         uploadPage.uploadJob(INVALID_PDF);
         waitUntilElementIsPresent(SELECTOR_DROPZONE_TEXT_FILE_SIZE);
         Assert.assertEquals("HeaderIsNotPresent.pdf - 13.25 KB", driver.findElement(SELECTOR_DROPZONE_FILE_NAME).getText());
