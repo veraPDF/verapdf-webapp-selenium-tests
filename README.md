@@ -37,6 +37,6 @@ When the tests are finished, the folder 'target' contains:
 
 1. MainPageTest#checkMainPageGUI - the first test to check a webelement on the main page.
 2. DemoTest#demoCheckProfile - the test to check a "Demo Suite".
-3. HotTest#hotCheckProfile  - the test to see if the job can be moved to "AutoAnalysis".
+3. HotTest#hotCheckProfile  - the test to check a "Smoke Suite".
 4. ... to be continued
 
