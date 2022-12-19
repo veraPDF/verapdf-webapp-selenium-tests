@@ -12,29 +12,31 @@ import java.io.IOException;
 public class MainPage extends BasicPage {
 
     private static Logger log = Logger.getLogger(MainPage.class.getName());
+    private final String demoButton = "//main/div/*[@class='btn']";
 
     public MainPage(WebDriver driver) throws IOException {
         super(driver);
         PageFactory.initElements(driver, this);
         waitForPageLoad(driver);
+
     }
 
     public MainPage openMainPage() throws IOException {
-        log.info("Trying to open mainPage ...");
-        MainPage mainPage = new MainPage(driver);
-        log.info("Trying to open mainPage ... Done");
+        log.info("Trying to openMainPage ...");
         return this;
     }
 
-    public String getTitle() {
-
-        return driver.getTitle();
+    public WebElement getDemoButton() {
+        log.info("Trying to getDemoButton ...");
+        WebElement el = waitForAndFindWebElement(By.xpath(demoButton), PropertiesValue.getWaitForDriver());
+        return el;
     }
 
-    public WebElement getDemoButton() {
+    public AppPage openAppPage() throws IOException {
+        log.info("Trying to openAppPage ...");
+        waitForAndFindWebElement(By.xpath(demoButton), PropertiesValue.getWaitForDriver()).click();
+        waitForAndFindWebElement(By.xpath("//*[@class='dropzone-text']"), PropertiesValue.getWaitForDriver());
 
-        WebElement el = waitForAndFindWebElement(By.xpath("//main/div/*[@class='btn']"), PropertiesValue.getWaitForDriver());
-
-        return el;
+        return new AppPage(driver);
     }
 }

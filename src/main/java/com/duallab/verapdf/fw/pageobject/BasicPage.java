@@ -1,20 +1,8 @@
 package com.duallab.verapdf.fw.pageobject;
 
 import com.duallab.verapdf.tools.PropertiesValue;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -58,21 +51,12 @@ public class BasicPage {
         el_body.sendKeys(Keys.ESCAPE);
     }
 
-    public void waitUntilElementIsVisible(WebElement element) throws IOException {
-        WebDriverWait wait = new WebDriverWait(driver, PropertiesValue.getWaitForDriver());
-        try {
-            wait.until(ExpectedConditions.visibilityOf(element));
-        } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
-        }
-    }
-
     public void waitInvisibilityOfElementLocated(By locator) throws IOException {
         WebDriverWait wait = new WebDriverWait(driver, PropertiesValue.getWaitForDriver());
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
+            log.info("Exception e during wait.until occurred: " + e + "\n");
         }
     }
 
@@ -81,7 +65,7 @@ public class BasicPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
+            log.info("Exception e during wait.until occurred: " + e + "\n");
         }
     }
 
@@ -90,7 +74,7 @@ public class BasicPage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
+            log.info("Exception e during wait.until occurred: " + e + "\n");
         }
     }
 
@@ -99,7 +83,7 @@ public class BasicPage {
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
+            log.info("Exception e during wait.until occurred: " + e + "\n");
         }
     }
 
@@ -108,59 +92,17 @@ public class BasicPage {
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.toString() + "\n");
+            log.info("Exception e during wait.until occurred: " + e + "\n");
         }
     }
 
-    public void waitUntilElementIsNotPresent(By locator) throws IOException {
-        //WebDriverWait wait = new WebDriverWait(driver, 15);
-        int i = 0;
-        try {
-            while (driver.findElements(locator).size() > 0) {
-                log.info("Waiting yet ... ");
-                Thread.sleep(100);
-                i += 100;
-                if (i > PropertiesValue.getWaitForHeavyLoadPlaces()) {
-                    break;
-                }
-            }
-            log.info("waitUntilElementIsNotPresent ... finished. Wait time:" + i + "\n");
-        } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during wait.until occurred: " + e.getMessage() + "\n");
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void waitUntilElementIsClickable(WebElement element) throws IOException {
+    public void waitUntilElementToBeClickable(WebElement element) throws IOException {
         log.info("waitUntilElementIsClickable starting ..." + element.toString());
         WebDriverWait wait = new WebDriverWait(driver, PropertiesValue.getWaitForDriver());
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (org.openqa.selenium.TimeoutException e) {
-            log.info("Exception e during waitUntilElementIsClickable occurred: " + e.toString() + "\n");
-        }
-    }
-
-    public void assertElementSelected(WebElement element) {
-        Assert.assertTrue(element.isSelected());
-    }
-
-    public void assertElementIsNotSelected(WebElement element) {
-        Assert.assertFalse(element.isSelected());
-    }
-
-    public void clickItem(WebElement item, String errorMessage) {
-        try {
-            waitUntilElementIsClickable(item);
-            log.info("Going to item.click() ...  ");
-            item.click();
-            Thread.sleep(500);
-            log.info(" item.click() ...  clicked " + "\n");
-        } catch (Exception e) {
-            log.info("Exception e during clickItem throw: " + e.toString() + "\n");
-            throw new Error("Element " + errorMessage + " is not clickable");
+            log.info("Exception e during waitUntilElementIsClickable occurred: " + e + "\n");
         }
     }
 
@@ -234,46 +176,12 @@ public class BasicPage {
         element.sendKeys(valueEnter);
     }
 
-    public void selectCheckbox(WebElement checkboxValue) {
-        if (!checkboxValue.isSelected()) {
-            Actions actions = new Actions(driver);
-            actions.moveToElement(checkboxValue).click().build().perform();
-        }
-    }
-
-    public void unCheckCheckBox(WebElement checkboxValue) {
-        if (checkboxValue.isSelected()) {
-            Actions actions = new Actions(driver);
-            actions.moveToElement(checkboxValue).click().build().perform();
-        }
-    }
-
-    public Boolean elementIsPresent(String xPath) {
-        Boolean isPresent = driver.findElements(By.xpath(xPath)).size() > 0;
-        return isPresent;
-    }
-
-    public String getBrowserName() {
-        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-        String browserName = cap.getBrowserName().toLowerCase();
-        return browserName;
-    }
-
-    public void assertResultValueWithRegExp(String actualMessage, String expectedMessage) {
-        assertTrue(actualMessage.matches(expectedMessage));
-    }
-
-    public void assertMessageOfElement(WebElement visibleElement, String message) throws IOException {
-        waitUntilElementIsVisible(visibleElement);
-        assertEquals(message, visibleElement.getText());
-    }
-
     public void windowHandle(String titlePage, String text) {
         String parentId = driver.getWindowHandle();
         String parentTitle = driver.getTitle();
         try {
-            for (String winwowId : driver.getWindowHandles()) {
-                String title = driver.switchTo().window(winwowId).getTitle();
+            for (String winId : driver.getWindowHandles()) {
+                String title = driver.switchTo().window(winId).getTitle();
                 if (title.equals(titlePage)) {
                     //assertEquals("The page does not contain text - " + text, driver.getPageSource().contains(text));
                     Assert.assertTrue(driver.getPageSource().contains(text));
@@ -304,7 +212,7 @@ public class BasicPage {
             el = driver.findElement(waitFor);
         } catch (Exception e) {
             log.info("\n\nNothing found ...\n");
-            log.info("Exception e occurred: " + e.toString() + "\n");
+            log.info("Exception e occurred: " + e + "\n");
         }
         return el;
     }
@@ -319,7 +227,7 @@ public class BasicPage {
             els = driver.findElements(waitFor);
         } catch (Exception e) {
             log.info("\n\nNothing found ...\n");
-            log.info("Exception e occurred: " + e.toString() + "\n");
+            log.info("Exception e occurred: " + e + "\n");
         }
         return els;
     }
@@ -338,16 +246,8 @@ public class BasicPage {
         return textFromElement;
     }
 
-    public void prefsButtonClick() throws InterruptedException {
-        log.info("Starting 'PrefsButtonClick' ...");
-        WebElement el =
-                waitForAndFindWebElement(
-                        By.xpath("//*[@id='wepreferences']"), PropertiesValue.getWaitForDriver());
-        TimeUnit.MILLISECONDS.sleep(1000);
-        el.click();
-        waitForAndFindWebElement(
-                By.xpath("//ion-segment-button//ion-icon[@name='browsers']"),
-                PropertiesValue.getWaitForDriver());
-        log.info("Done.");
+    public String getTitle() throws IOException {
+        waitForPageLoad(driver);
+        return driver.getTitle();
     }
 }

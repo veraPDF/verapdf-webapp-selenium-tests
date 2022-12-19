@@ -3,7 +3,7 @@
 <suite name="Default Suite">
     <test name="All Tests">
         <packages>
-            <package name="com.duallab.verapdf.tests.*">
+            <package name="com.duallab.verapdf.tests.general.*">
             </package>
         </packages>
     </test>

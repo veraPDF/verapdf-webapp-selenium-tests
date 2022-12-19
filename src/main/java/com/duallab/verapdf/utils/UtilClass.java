@@ -1,18 +1,12 @@
 package com.duallab.verapdf.utils;
 
+import org.apache.log4j.Logger;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public final class UtilClass {
     private static Logger log = Logger.getLogger(UtilClass.class.getName());
@@ -23,14 +17,14 @@ public final class UtilClass {
     public static CharSequence canonicalPath(String fileName) throws IOException {
         String datafiles =
                 (new java.io.File(".")).getCanonicalPath()
-                        + "\\src\\test\\java\\com\\duallab\\integr8tor\\dataFiles\\" + fileName;
+                        + "/src/test/java/com/duallab/verapdf/dataFiles/" + fileName;
         return datafiles;
     }
 
     public static CharSequence canonicalPathForImages(String fileName) throws IOException {
         String imagePatterns =
                 (new java.io.File(".")).getCanonicalPath()
-                        + "\\src\\test\\java\\com\\duallab\\integr8tor\\imagePatterns\\"
+                        + "/src/test/java/com/duallab/verapdf/dataFiles/imagePatterns/"
                         + fileName;
         return imagePatterns;
     }
