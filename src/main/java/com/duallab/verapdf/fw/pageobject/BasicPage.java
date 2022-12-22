@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class BasicPage {
+public abstract class BasicPage {
     private static Logger log = Logger.getLogger(BasicPage.class.getName());
     @FindBy(css = "input[type=file]")
     protected WebElement dropzone;
