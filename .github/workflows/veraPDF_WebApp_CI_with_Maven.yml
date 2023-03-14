@@ -27,7 +27,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Prepare linux packages ... 
       run: |
         echo pwd: $PWD
         echo dir: $(ls ./)
@@ -36,7 +36,16 @@ jobs:
         sudo apt install wget
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+
+    - name: Running veraPDF WebApp Selenium tests
+
+      run: |
+        echo pwd: $PWD
+        echo dir content: $(ls ./)
+        I'm: whoami
+
         google-chrome --version
-        
         mvn -version
+
         mvn clean install
