@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +23,7 @@ import static org.testng.Assert.assertTrue;
 
 public abstract class BasicPage {
     private static Logger log = Logger.getLogger(BasicPage.class.getName());
+
     @FindBy(css = "input[type=file]")
     protected WebElement dropzone;
 
@@ -60,7 +62,7 @@ public abstract class BasicPage {
         }
     }
 
-    public void waitUntilElementIsVisibleCustomized(WebElement element, int time) {
+    public void waitUntilElementIsVisibleCustomized(WebElement element, Duration time) {
         WebDriverWait wait = new WebDriverWait(driver, time);
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
@@ -202,7 +204,7 @@ public abstract class BasicPage {
         checkRightDataParsingForScreenshot(xpath, columnSelector);
     }
 
-    public WebElement waitForAndFindWebElement(By waitFor, int timeOutInSeconds) {
+    public WebElement waitForAndFindWebElement(By waitFor, Duration timeOutInSeconds) {
 
         WebElement el = null;
 
@@ -217,7 +219,7 @@ public abstract class BasicPage {
         return el;
     }
 
-    public List<WebElement> waitForAndFindWebElements(By waitFor, int timeOutInSeconds) {
+    public List<WebElement> waitForAndFindWebElements(By waitFor, Duration timeOutInSeconds) {
 
         List<WebElement> els = null;
 
@@ -232,7 +234,7 @@ public abstract class BasicPage {
         return els;
     }
 
-    public String findTextToBePresent(By locator, int timeOutInSeconds, String text) {
+    public String findTextToBePresent(By locator, Duration timeOutInSeconds, String text) {
         String textFromElement = "";
         try {
             (new WebDriverWait(driver, timeOutInSeconds))

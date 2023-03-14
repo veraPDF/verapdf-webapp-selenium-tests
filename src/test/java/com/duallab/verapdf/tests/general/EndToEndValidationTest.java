@@ -45,7 +45,6 @@ public class EndToEndValidationTest extends BaseTest {
         InspectErrorsPage errorsPage = appPage.navigateTo_InspectErrorsPage();
         assertThat(errorsPage.getPDFFileName()).isEqualTo(FILE_NAME);
         assertThat(errorsPage.getListErrorsSize()).isBetween(1, 6);
-
     }
 
     @BeforeMethod

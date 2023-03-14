@@ -40,7 +40,7 @@ public class SikuliHelper {
         imagePattern.similar(PropertiesValue.getSimilar());
 
         log.info("handling Windows ...");
-        s.wait(imagePattern, PropertiesValue.getWaitForDriver());
+        s.wait(imagePattern, 30);
         log.info("s.getLastMatch().getScore() " + s.getLastMatch().getScore());
 
         log.info("Typing ..." + datafiles + fileName);
@@ -85,7 +85,7 @@ public class SikuliHelper {
 
         try {
             log.info("Waiting ..." + Runtime.getRuntime().getClass().getEnclosingMethod().toString());
-            s.wait(imagePattern, PropertiesValue.getWaitForDriver());
+            s.wait(imagePattern, 30);
             log.info("getScore: " + s.getLastMatch().getScore());
             log.info("Done.");
         } catch (Exception e) {
@@ -93,7 +93,7 @@ public class SikuliHelper {
             getScreen();
             TimeUnit.SECONDS.sleep(2);
             log.info("Trying again ... ");
-            s.wait(imagePattern, PropertiesValue.getWaitForDriver());
+            s.wait(imagePattern, 30);
             log.info("getScore: " + s.getLastMatch().getScore());
             log.info("Done twice.");
         }
