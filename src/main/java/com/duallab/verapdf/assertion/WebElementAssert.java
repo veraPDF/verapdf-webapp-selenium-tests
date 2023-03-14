@@ -15,7 +15,7 @@ public class WebElementAssert extends AbstractAssert<WebElementAssert, WebElemen
         return new WebElementAssert(el);
     }
 
-    public WebElementAssert hasAttribute(String attribute) {
+    public WebElementAssert hasAttribute(String attribute, String pointer) {
         isNotNull();
         return this;
     }
@@ -25,6 +25,24 @@ public class WebElementAssert extends AbstractAssert<WebElementAssert, WebElemen
         isNotNull();
         if (!actual.getAttribute(attr).equals(value)) {
             failWithMessage("Expected element to have attribute <%s> value <%s>. But It was not ... ", attr, value);
+        }
+        return this;
+    }
+
+    public WebElementAssert hasCSSValue(String cssValue, String value) {
+        log.info("Checking ... cssValue: '" + cssValue + "' with value: " + value);
+        isNotNull();
+        if (!actual.getCssValue(cssValue).equals(value)) {
+            failWithMessage("Expected element to have cssValue:<%s> value:<%s>. But It was not ... ", cssValue, value);
+        }
+        return this;
+    }
+
+    public WebElementAssert containInCSSValue(String cssValue, String value) {
+        log.info("Checking ... cssValue: '" + cssValue + "' with value: " + value);
+        isNotNull();
+        if (!actual.getCssValue(cssValue).equals(value)) {
+            failWithMessage("Expected element to have cssValue <%s> value <%s>. But It was not ... ", cssValue, value);
         }
         return this;
     }

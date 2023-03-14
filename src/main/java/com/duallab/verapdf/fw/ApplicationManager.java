@@ -46,29 +46,24 @@ public class ApplicationManager {
             if (driverStr.equals("firefox")) {
                 driver = new FirefoxDriver();
             } else if (driverStr.equals("chrome")) {
-                HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-                chromePrefs.put("profile.default_content_settings.popups", 0);
-                chromePrefs.put("download.default_directory", ".\\Downloads");
-                chromePrefs.put("safebrowsing.enabled", "true");
 
-                Boolean testEnv = (Boolean) properties.get("testEnv");
                 ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--incognito");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("headless");
 
-                  options.addArguments("headless");
-//                options.addArguments("--no-sandbox");
-//                options.addArguments("--disable-gpu");
-//                options.addArguments("--disable-dev-shm-usage");
-//                options.addArguments("--enable-crash-reporter");
-//                options.addArguments("--enable-logging");
+//              options.addArguments("--incognito");
+//              options.addArguments("--no-sandbox");
+//              options.addArguments("--disable-gpu");
+//              options.addArguments("--disable-dev-shm-usage");
+//              options.addArguments("--enable-crash-reporter");
+//              options.addArguments("--enable-logging");
 
-                LoggingPreferences logs = new LoggingPreferences();
-                logs.enable(LogType.BROWSER, Level.ALL);
+//                LoggingPreferences logs = new LoggingPreferences();
+//                logs.enable(LogType.BROWSER, Level.ALL);
 
-                DesiredCapabilities cap = DesiredCapabilities.chrome();
-//                cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-                cap.setCapability(ChromeOptions.CAPABILITY, options);
-                cap.setCapability(CapabilityType.LOGGING_PREFS, logs);
+//                DesiredCapabilities cap = DesiredCapabilities.chrome();
+//                cap.setCapability(ChromeOptions.CAPABILITY, options);
+//                cap.setCapability(CapabilityType.LOGGING_PREFS, logs);
 
                 driver = new ChromeDriver(options);
 
@@ -104,7 +99,7 @@ public class ApplicationManager {
             getDriver().quit();
             log.info("Quitting: Done\n");
         } else {
-            //stop();
+            // stop();
             if (driver != null) {
                 driver.quit();
             }

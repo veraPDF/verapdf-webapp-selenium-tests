@@ -5,6 +5,7 @@ import com.duallab.verapdf.tools.PropertiesValue;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -37,7 +38,7 @@ public class BaseTest {
         return app.getDriver();
     }
 
-    public List<WebElement> waitForAndFindWebElements(By waitFor, int timeOutInSeconds) {
+    public List<WebElement> waitForAndFindWebElements(By waitFor, Duration timeOutInSeconds) {
 
         List<WebElement> els = null;
 
@@ -52,7 +53,7 @@ public class BaseTest {
         return els;
     }
 
-    public WebElement waitForAndFindWebElement(By waitFor, int timeOutInSeconds) {
+    public WebElement waitForAndFindWebElement(By waitFor, Duration timeOutInSeconds) {
         WebElement el = null;
         try {
             (new WebDriverWait(app.getDriver(), timeOutInSeconds))
