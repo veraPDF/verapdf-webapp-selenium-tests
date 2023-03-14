@@ -32,8 +32,11 @@ jobs:
         echo pwd: $PWD
         echo dir: $(ls ./)
 
-        sudo apt update -y
-        sudo apt-get install chrome-browser -y
-
+        sudo apt update
+        sudo apt install wget
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+        google-chrome --version
+        
         mvn -version
         mvn clean install
