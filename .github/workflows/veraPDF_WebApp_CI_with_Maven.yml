@@ -43,7 +43,7 @@ jobs:
       run: |
         echo pwd: $PWD
         echo dir content: $(ls ./)
-        echo I'm: whoami
+        whoami
 
         google-chrome --version
         mvn -version
