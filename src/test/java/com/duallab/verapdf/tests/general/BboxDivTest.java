@@ -32,7 +32,7 @@ public class BboxDivTest extends BaseTest {
     private final String PROFILE_NAME2 = "WCAG_2_1_DEV"; // 100% compliant
 
     @Test(timeOut = 30000, retryAnalyzer = RetryTest.class)
-    public void checkEndToEndValidation() throws Exception {
+    public void checkTensorFlow() throws Exception {
         
         log.info("Hello TensorFlow " + TensorFlow.version());
 
