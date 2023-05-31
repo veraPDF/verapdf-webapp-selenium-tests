@@ -41,23 +41,23 @@ public class OpenCVTest {
         int machMethod = Imgproc.TM_CCOEFF;
 
         //Template matching method
-        log.info("Checking ... matchTemplate...");
+        log.info("Checking ... matchTemplate... with machMethod: " + Imgproc.TM_CCOEFF);
         Imgproc.matchTemplate(source, template, outputImage, machMethod);
-        Imgcodecs.imwrite("target\\" + "outputImage_0_1_2.jpg", outputImage);
+        Imgcodecs.imwrite("target/" + "outputImage_0_1_2.jpg", outputImage);
 
         Core.MinMaxLocResult mmr = Core.minMaxLoc(outputImage);
         Point matchLoc = mmr.maxLoc;
 
         log.info("Checking ... mmr.maxLoc: " + mmr.maxLoc);
-//        assertThat(mmr.maxLoc.x).isEqualTo(123.0);
-//        assertThat(mmr.maxLoc.y).isEqualTo(125.0);
+        assertThat(mmr.maxLoc.x).isEqualTo(123.0);
+        assertThat(mmr.maxLoc.y).isEqualTo(125.0);
 
 
         //Draw rectangle on result image
         Imgproc.rectangle(source, matchLoc, new Point(matchLoc.x + template.width(),
                 matchLoc.y + template.height()), new Scalar(200, 0, 0), 2);
-
-        Imgcodecs.imwrite("target\\" + "screen_a_check_12.png", source);
+        log.info("Writing an image with rectangle to a target folder ... ");
+        Imgcodecs.imwrite("target/" + "screen_a_check_12.png", source);
         log.info("Completed.");
     }
 }
