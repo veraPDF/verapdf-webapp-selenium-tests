@@ -26,12 +26,12 @@ public class OpenCVTest {
 
         //Load image file
 
-        String fileSource = "src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "screen_a.png";
+        String fileSource = "src/test/java/com/duallab/verapdf/dataFiles/" + "screen_a.png";
         log.info("fileSource exists: " +  Files.exists(Paths.get(fileSource)));
         Mat source = Imgcodecs.imread(fileSource);
 
         log.info("Checking ... source: " + source.size());
-        String fileTemplate = "src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "5.png";
+        String fileTemplate = "src/test/java/com/duallab/verapdf/dataFiles/" + "5.png";
         log.info("fileTemplate exists: " +  Files.exists(Paths.get(fileTemplate)));
         Mat template = Imgcodecs.imread(fileTemplate);
         log.info("Checking ... template: " + template.size());
