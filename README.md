@@ -7,7 +7,7 @@ Quick Start
 
 In order to run tests you'll need:
 
- * Java 1.8, which can be downloaded [from Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+ * Java 11+, which can be downloaded [from Oracle](https://www.oracle.com/java/technologies/downloads/)
  * [Maven v3+](https://maven.apache.org/install.html)
  * The Chrome browser [built by Google](https://www.google.com/chrome/)
  * 4 Gb RAM on VM or PC with OS (Windows 10 or higher, Linux Ubuntu 20.04 or higher)  where tests will be run
