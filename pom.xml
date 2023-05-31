@@ -14,7 +14,13 @@
         <surefire.version>2.22.1</surefire.version>
         <clean.plugin.version>3.0.0</clean.plugin.version>
         <compiler.plugin.version>3.5.1</compiler.plugin.version>
+        <java.version>11</java.version>
+
+        <dl4j-master.version>1.0.0-M2.1</dl4j-master.version>
+        <logback.version>1.2.3</logback.version>
         <java.version>1.8</java.version>
+        <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
@@ -144,6 +150,46 @@
             <artifactId>tensorflow-core-platform</artifactId>
             <version>0.5.0</version>
         </dependency>
+
+
+        <!-- deeplearning4j-core: contains main functionality and neural networks -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j-master.version}</version>
+        </dependency>
+
+        <!--
+        ND4J backend: every project needs one of these. The backend defines the hardware on which network training
+        will occur. "nd4j-native-platform" is for CPUs only (for running on all operating systems).
+        -->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native</artifactId>
+            <version>${dl4j-master.version}</version>
+        </dependency>
+
+        <!-- CUDA: to use GPU for training (CUDA) instead of CPU, uncomment this, and remove nd4j-native-platform -->
+        <!-- Requires CUDA to be installed to use. Change the version (8.0, 9.0, 9.1) to change the CUDA version -->
+
+
+        <!-- Optional, but recommended: if you use CUDA, also use CuDNN. To use this, CuDNN must also be installed -->
+        <!-- See: https://deeplearning4j.konduit.ai/config/backends/config-cudnn#using-deeplearning-4-j-with-cudnn -->
+
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.7.0-0</version>
+        </dependency>
+
+
     </dependencies>
 
     <profiles>
