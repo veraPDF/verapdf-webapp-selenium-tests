@@ -10,6 +10,9 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.testng.annotations.Test;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OpenCVTest {
@@ -22,10 +25,15 @@ public class OpenCVTest {
         log.info("Checking ... Core.VERSION: " + Core.VERSION);
 
         //Load image file
-        Mat source = Imgcodecs.imread("src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "screen_a.png");
+
+        String fileSource = "src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "screen_a.png";
+        log.info("fileSource exists: " +  Files.exists(Paths.get(fileSource)));
+        Mat source = Imgcodecs.imread(fileSource);
 
         log.info("Checking ... source: " + source.size());
-        Mat template = Imgcodecs.imread("src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "5.png");
+        String fileTemplate = "src\\test\\java\\com\\duallab\\verapdf\\dataFiles\\" + "5.png";
+        log.info("fileTemplate exists: " +  Files.exists(Paths.get(fileTemplate)));
+        Mat template = Imgcodecs.imread(fileTemplate);
         log.info("Checking ... template: " + template.size());
 
 
@@ -33,6 +41,7 @@ public class OpenCVTest {
         int machMethod = Imgproc.TM_CCOEFF;
 
         //Template matching method
+        log.info("Checking ... matchTemplate...");
         Imgproc.matchTemplate(source, template, outputImage, machMethod);
         Imgcodecs.imwrite("target\\" + "outputImage_0_1_2.jpg", outputImage);
 
@@ -49,6 +58,6 @@ public class OpenCVTest {
                 matchLoc.y + template.height()), new Scalar(200, 0, 0), 2);
 
         Imgcodecs.imwrite("target\\" + "screen_a_check_12.png", source);
-        log.info("Complated.");
+        log.info("Completed.");
     }
 }
