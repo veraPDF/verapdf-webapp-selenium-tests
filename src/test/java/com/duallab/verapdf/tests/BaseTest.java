@@ -5,7 +5,9 @@ import com.duallab.verapdf.tools.PropertiesValue;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,6 +24,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
 
     protected static ApplicationManager app;
+
     private static Logger log = Logger.getLogger(BaseTest.class.getName());
 
     static {
@@ -91,5 +94,9 @@ public class BaseTest {
         ((JavascriptExecutor) app.getDriver()).executeScript("arguments[0].scrollTop=0;", el);
         Thread.sleep(250);
         log.info("scrollToElement ... Done \n");
+    }
+
+    public String currentDate() {
+        return new SimpleDateFormat("dd-MM-yy_HH-mm-SS").format(new Date());
     }
 }

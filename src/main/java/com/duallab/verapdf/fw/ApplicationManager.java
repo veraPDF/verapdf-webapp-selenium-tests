@@ -49,7 +49,7 @@ public class ApplicationManager {
 
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
-                options.addArguments("headless");
+//                options.addArguments("headless");
 
 //              options.addArguments("--incognito");
 //              options.addArguments("--no-sandbox");

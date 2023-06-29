@@ -1,5 +1,7 @@
 package com.duallab.verapdf.fw.ai;
 
+import com.duallab.verapdf.tools.PropertiesValue;
+import org.apache.log4j.Logger;
 import org.datavec.image.loader.NativeImageLoader;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.util.ModelSerializer;
@@ -15,7 +17,7 @@ import org.opencv.imgcodecs.Imgcodecs;
 import java.io.IOException;
 
 public class DataUtil {
-
+    private static Logger log = Logger.getLogger(DataUtil.class.getName());
     public static int evaluateImage(final Mat image, int HEIGHT, int WIDTH, int N_OUTCOMES,
                                     NativeImageLoader IMAGE_LOADER,
                                     ImagePreProcessingScaler IMAGE_PRE_PROCESSING_SCALER,
@@ -39,16 +41,14 @@ public class DataUtil {
                     Conditions.equals(predicted.maxNumber())
             );
 
-            System.out.print("  predictedValue: " + Integer.parseInt(predictedValue.toString()));
+            log.info("  predictedValue(maxNumber): " + predicted.maxNumber().toString());
             return Integer.parseInt(predictedValue.toString());
         }
     }
 
     public static MultiLayerNetwork loadModel() {
         try {
-            return ModelSerializer.restoreMultiLayerNetwork(
-                    "src/main/resources/models/trainedx22-1.tar"
-            );
+            return ModelSerializer.restoreMultiLayerNetwork(PropertiesValue.getPropertiesValue("model"));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
