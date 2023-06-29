@@ -3,6 +3,7 @@ package com.duallab.verapdf.tests.general;
 import com.duallab.verapdf.fw.ApplicationManager;
 import com.duallab.verapdf.fw.ai.DataUtil;
 import com.duallab.verapdf.fw.pageobject.AppPage;
+import com.duallab.verapdf.fw.pageobject.InspectErrorsPage;
 import com.duallab.verapdf.fw.pageobject.MainPage;
 import com.duallab.verapdf.tests.BaseTest;
 import com.duallab.verapdf.tools.LogAnalysis;
@@ -83,6 +84,13 @@ public class SummaryPredictTest extends BaseTest {
         int predictedValue_r1 = DataUtil.evaluateImage(image_r1, HEIGHT, WIDTH, N_OUTCOMES, IMAGE_LOADER, IMAGE_PRE_PROCESSING_SCALER, NETWORK);
         log.info("PredictedValue 7/summaryWebElement: " + predictedValue_r1);
         assertThat(predictedValue_r1).isEqualTo(7);
+
+        appPage.navigateTo_InspectErrorsPage();
+        TimeUnit.SECONDS.sleep(1);
+        File srcErrorFile = getDriver().findElement(By.xpath("//section[@class='inspect']")).getScreenshotAs(OutputType.FILE);
+        String errorSummary_file = file_name + "_summaryError_" + currentDate() + ".png";
+        FileUtils.copyFile(srcErrorFile, new File(filePath + errorSummary_file));
+
     }
 
     @BeforeMethod
