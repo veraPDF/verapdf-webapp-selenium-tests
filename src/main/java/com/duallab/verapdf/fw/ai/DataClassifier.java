@@ -1,5 +1,6 @@
 package com.duallab.verapdf.fw.ai;
 
+import com.duallab.verapdf.tools.PropertiesValue;
 import org.datavec.image.loader.NativeImageLoader;
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
@@ -27,12 +28,12 @@ import java.util.List;
 import java.util.Random;
 
 public class DataClassifier {
-    private static final String RESOURCES_FOLDER_PATH = "src/main/resources/";
+    private static final String RESOURCES_FOLDER_PATH = "./resources/";
     private static final int HEIGHT = 60;
     private static final int WIDTH = 60;
-    private static final int N_SAMPLES_TRAINING = 54; // Adjust according to the number of images in training set
-    private static final int N_SAMPLES_TESTING = 6; // Adjust according to the number of images in testing set
-    private static final int N_OUTCOMES = 7;
+    private static final int N_SAMPLES_TRAINING = 72; // Adjust according to the number of images in training set
+    private static final int N_SAMPLES_TESTING = 7; // Adjust according to the number of images in testing set
+    private static final int N_OUTCOMES = 8;
 
     public static void main(final String args[]) throws IOException {
         DataSetIterator dataSetIterator = getDataSetIterator(RESOURCES_FOLDER_PATH + "data/training", N_SAMPLES_TRAINING);
@@ -102,6 +103,6 @@ public class DataClassifier {
         Evaluation eval = model.evaluate(testDsi);
         System.out.print(eval.stats());
 
-        ModelSerializer.writeModel(model, RESOURCES_FOLDER_PATH + "models/trainedx22-1.tar", true);
+        ModelSerializer.writeModel(model, PropertiesValue.getPropertiesValue("model"), true);
     }
 }
