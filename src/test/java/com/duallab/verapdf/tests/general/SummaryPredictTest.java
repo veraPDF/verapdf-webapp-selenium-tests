@@ -32,8 +32,10 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 
 public class SummaryPredictTest extends BaseTest {
-    private final String FILE_NAME = "test_6-3-8-t01-fail-a.pdf";
-    private final String PROFILE_NAME = "PDFUA_1_MACHINE";
+
+    //  private final String PROFILE_NAME = "PDFUA_1_MACHINE";
+    private final String PROFILE_NAME = "WCAG_2_1_COMPLETE";
+
     private static final int HEIGHT = 60;
     private static final int WIDTH = 60;
     private static final int N_OUTCOMES = 8;
@@ -62,7 +64,7 @@ public class SummaryPredictTest extends BaseTest {
     public void predictSummaryWebElement(String file_name) throws IOException, InterruptedException {
 
         MainPage mainPage = new MainPage(app.getDriver()).openMainPage();
-        log.info("Checking ...");
+        log.info("Checking ... file: " + file_name + " PROFILE_NAME: " + PROFILE_NAME);
         assertThat(mainPage.getTitle()).isEqualTo("veraPDF viewer");
 
         then(mainPage.getDemoButton().getText()).isEqualTo("Go to demo");
