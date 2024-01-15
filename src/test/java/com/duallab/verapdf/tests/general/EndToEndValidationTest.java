@@ -22,7 +22,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 public class EndToEndValidationTest extends BaseTest {
     private static Logger log = Logger.getLogger(EndToEndValidationTest.class.getName());
     private final String FILE_NAME = "test_6-3-8-t01-fail-a.pdf";
-    private final String PROFILE_NAME = "PDFUA_1_MACHINE";
+    private final String PROFILE_NAME = "PDFUA_1";
     private final String PROFILE_NAME2 = "WCAG_2_1_DEV"; // 100% compliant
 
 
@@ -32,8 +32,8 @@ public class EndToEndValidationTest extends BaseTest {
         log.info("Checking ...");
         assertThat(mainPage.getTitle()).isEqualTo("veraPDF viewer");
 
-        then(mainPage.getDemoButton().getText()).isEqualTo("Go to demo");
-        then(mainPage.getDemoButton().getAttribute("href")).isEqualTo("https://verapdf.duallab.com/demo");
+        then(mainPage.getDemoButton().getText()).isEqualTo("Start");
+        then(mainPage.getDemoButton().getAttribute("href")).isEqualTo("https://verapdf.duallab.com/validate");
 
         AppPage appPage = mainPage.openAppPage();
         assertThat(appPage.getTitle()).isEqualTo("veraPDF for WCAG");
