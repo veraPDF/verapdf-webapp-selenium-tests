@@ -69,10 +69,10 @@ public class AppPage extends BasicPage {
     public int validate() {
         log.info("Trying to validate  ... ");
         WebDriverWait wait = new WebDriverWait(driver, PropertiesValue.getWaitForDriver());
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='page-navigation__end']//*[@class='MuiButton-label']")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='page-navigation-text__end']//*[@class='MuiButton-label']")));
 
         log.info("Trying to click on Validate button  ... ");
-        WebElement el_button = waitForAndFindWebElement(By.xpath("//*[@class='page-navigation__end']//*[@class='MuiButton-label']"), PropertiesValue.getWaitForDriver());
+        WebElement el_button = waitForAndFindWebElement(By.xpath("//*[@class='page-navigation-text__end']//*[@class='MuiButton-label']"), PropertiesValue.getWaitForDriver());
         el_button.click();
 
         log.info("Waiting in queue  ... ");
