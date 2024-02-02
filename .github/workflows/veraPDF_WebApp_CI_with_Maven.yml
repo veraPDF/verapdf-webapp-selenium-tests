@@ -10,7 +10,7 @@ name: Java CI with Maven for veraPDF WebApp
 
 on:
   schedule:
-      - cron: "05 04 * * *"
+      - cron: "05 02 * * 1"
   push:
     branches: [ "master" ]
   # pull_request:
