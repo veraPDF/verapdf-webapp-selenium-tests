@@ -62,7 +62,7 @@ jobs:
         name: Results
         path: "./target"
 
-    - name: Notify slack tests succeded
+    - name: Notify slack tests succeeded
       if: success()
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
