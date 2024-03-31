@@ -18,11 +18,11 @@ In order to run tests you'll need:
 2. Run tests using Maven: `mvn clean install`
 
 ### Additional Examples how to start project:
-1. `mvn clean install`  General profile active by default with baseUrl = https://verapdf.duallab.com/, see property file
-2. `mvn test -P GeneralTests -DbaseUrl=https://verapdf.duallab.com/`
-3. `mvn test -P HotTests -DbaseUrl=https://verapdf.duallab.com/`    Profile Hot tests
-4. `mvn test -P DemoTests -DbaseUrl=https://verapdf.duallab.com/`   Profile Demo tests
-5. `mvn test -Dtest=JobTest -DbaseUrl=https://verapdf.duallab.com/`
+1. `mvn clean install`  General profile active by default with baseUrl = https://dev.pdf4wcag.duallab.com/, see property file
+2. `mvn test -P GeneralTests -DbaseUrl=https://dev.pdf4wcag.duallab.com/`
+3. `mvn test -P HotTests -DbaseUrl=https://dev.pdf4wcag.duallab.com/`    Profile Hot tests
+4. `mvn test -P DemoTests -DbaseUrl=https://dev.pdf4wcag.duallab.com/`   Profile Demo tests
+5. `mvn test -Dtest=JobTest -DbaseUrl=https://dev.pdf4wcag.duallab.com/`
 6. `mvn clean install -Dtest=JobTest#addNewJob`
 7. `mvn clean install -Dtest=JobTest,HotTest`
 

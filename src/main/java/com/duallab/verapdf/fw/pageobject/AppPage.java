@@ -80,10 +80,11 @@ public class AppPage extends BasicPage {
         wait_progress__percentage.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@class='progress__percentage']")));
         log.info("Done.");
 
-        log.info("Waiting summary__compliance  ... ");
-        waitForAndFindWebElement(By.xpath("//*[@class='summary__compliance']"), PropertiesValue.getWaitForDriver());
+        log.info("Waiting legend  ... ");
+        waitForAndFindWebElement(By.xpath("//*[@class='legend']"), PropertiesValue.getWaitForDriver());
         //waitForAndFindWebElement(By.xpath("//*[contains(@href, 'result-details')]"), PropertiesValue.getWaitForDriver());
-        int compliant = Integer.parseInt(chop(waitForAndFindWebElement(By.xpath("//*[@id='app']//*[@class='summary__compliance']//*"), PropertiesValue.getWaitForDriver()).getText()));
+        String text = chop(waitForAndFindWebElement(By.xpath("//*[@id='app']//*[@class='legend']//*"), PropertiesValue.getWaitForDriver()).getText());
+        int compliant = Integer.parseInt(text.split(" ")[0]);
         log.info("Done.");
         return compliant;
     }

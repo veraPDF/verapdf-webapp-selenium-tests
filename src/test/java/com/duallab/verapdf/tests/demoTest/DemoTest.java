@@ -28,7 +28,7 @@ public class DemoTest extends BaseTest {
         log.info("Checking ...");
         assertThat(mainPage.getTitle()).isEqualTo("veraPDF viewer");
         then(mainPage.getDemoButton().getText()).isEqualTo("Go to demo");
-        then(mainPage.getDemoButton().getAttribute("href")).isEqualTo("https://verapdf.duallab.com/demo");
+        then(mainPage.getDemoButton().getAttribute("href")).isEqualTo("https://dev.pdf4wcag.duallab.com/demo");
         then(mainPage.getDemoButton().getCssValue("color")).isEqualTo("rgba(255, 255, 255, 1)");
     }
 

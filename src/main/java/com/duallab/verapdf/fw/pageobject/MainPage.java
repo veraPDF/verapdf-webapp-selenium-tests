@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MainPage extends BasicPage {
 
     private static Logger log = Logger.getLogger(MainPage.class.getName());
-    private final String demoButton = "//main/div/*[@class='btn']";
+    private final String demoButton = "//header/div/*[@class='btn']";
 
     public MainPage(WebDriver driver) throws IOException {
         super(driver);

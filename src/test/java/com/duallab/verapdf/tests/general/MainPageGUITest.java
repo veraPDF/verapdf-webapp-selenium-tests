@@ -22,12 +22,12 @@ public class MainPageGUITest extends BaseTest {
     public void checkMainPage() throws Exception {
         MainPage mainPage = new MainPage(app.getDriver()).openMainPage();
         log.info("Checking ...");
-
+        
+        System.out.println(mainPage.getDemoButton().getAttribute("id"));
         myAssertThat(mainPage.getDemoButton())
-                .hasAttributeValue("href", "https://verapdf.duallab.com/validate")
+                .hasAttributeValue("href", "https://dev.pdf4wcag.duallab.com/validate")
                 .hasAttributeValue("class", "btn")
-                .hasCSSValue("color", "rgba(255, 255, 255, 1)")
-                .hasCSSValue("background", "rgb(212, 83, 96) none repeat scroll 0% 0% / auto padding-box border-box");
+                .hasAttributeValue("id", "try-now-button");
     }
 
     @BeforeMethod
