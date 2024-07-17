@@ -11,190 +11,81 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <surefire.version>2.22.1</surefire.version>
-        <clean.plugin.version>3.0.0</clean.plugin.version>
-        <compiler.plugin.version>3.5.1</compiler.plugin.version>
         <java.version>11</java.version>
-
-        <dl4j-master.version>1.0.0-beta7</dl4j-master.version>
-        <logback.version>1.2.13</logback.version>
-        <java.version>1.8</java.version>
-        <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>2.27.0</allure.version>
+        <allure.maven.version>2.12.0</allure.maven.version>
+        <aspectj.version>1.9.22.1</aspectj.version>
+        <compiler.plugin.version>3.13.0</compiler.plugin.version>
+        <selenide.version>7.3.3</selenide.version>
+        <surefire.plugin.version>3.3.0</surefire.plugin.version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler.plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>32.0.0-android</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.7.0</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${allure.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.18.1</version>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide-testng</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.7.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.sikulix</groupId>
-            <artifactId>sikulixapi</artifactId>
-            <version>2.0.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.robotframework</groupId>
-            <artifactId>robotframework-maven-plugin</artifactId>
-            <version>2.1.0</version>
-            <type>maven-plugin</type>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>2.19.0</version>
-            <type>pom</type>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.xmlunit</groupId>
-            <artifactId>xmlunit-core</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>xmlunit</groupId>
-            <artifactId>xmlunit</artifactId>
-            <version>1.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>4.3.3</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-guava</artifactId>
-            <!-- use 2.0.1 for Java 7 projects -->
-            <version>3.5.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.87.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.tensorflow</groupId>
-            <artifactId>tensorflow-core-platform</artifactId>
-            <version>0.5.0</version>
-        </dependency>
-
-
-        <!-- deeplearning4j-core: contains main functionality and neural networks -->
-        <dependency>
-            <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-core</artifactId>
-            <version>${dl4j-master.version}</version>
-        </dependency>
-
-        <!--
-        ND4J backend: every project needs one of these. The backend defines the hardware on which network training
-        will occur. "nd4j-native-platform" is for CPUs only (for running on all operating systems).
-        -->
-        <dependency>
-            <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-native</artifactId>
-            <version>${dl4j-master.version}</version>
-        </dependency>
-
-        <!-- CUDA: to use GPU for training (CUDA) instead of CPU, uncomment this, and remove nd4j-native-platform -->
-        <!-- Requires CUDA to be installed to use. Change the version (8.0, 9.0, 9.1) to change the CUDA version -->
-
-
-        <!-- Optional, but recommended: if you use CUDA, also use CuDNN. To use this, CuDNN must also be installed -->
-        <!-- See: https://deeplearning4j.konduit.ai/config/backends/config-cudnn#using-deeplearning-4-j-with-cudnn -->
-
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openpnp</groupId>
-            <artifactId>opencv</artifactId>
-            <version>4.7.0-0</version>
-        </dependency>
-
-
     </dependencies>
+
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${compiler.plugin.version}</version>
+            <configuration>
+                <source>${java.version}</source>
+                <target>${java.version}</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${surefire.plugin.version}</version>
+            <configuration>
+                <argLine>
+                    -Xmx1024m
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
+                <systemPropertyVariables>
+                    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                </systemPropertyVariables>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>${aspectj.version}</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure.maven.version}</version>
+        </plugin>
+    </plugins>
+    </build>
 
     <profiles>
         <profile>
-            <id>GeneralTests</id>
+            <id>pdf4wcag-smoke</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -203,44 +94,9 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>testng-general.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>HotTests</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.1</version>
-                        <configuration>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>testng-hot.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>DemoTests</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.1</version>
-                        <configuration>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>testng-demo.xml</suiteXmlFile>
+                                <suiteXmlFile>profiles/pdf4wcag-smoke.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -248,5 +104,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>
