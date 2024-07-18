@@ -4,17 +4,16 @@ import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.TextCheck;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public abstract class AbstractPdf4WcagSelenideConfig {
 
@@ -42,8 +41,7 @@ public abstract class AbstractPdf4WcagSelenideConfig {
                 () -> {
                     capabilities.setBrowserName(Browsers.CHROME);
                     chromeOptions = new ChromeOptions()
-                            // Enable indication that browser is controlled by automation
-                            .addArguments("--enable-automation")
+                            .addArguments("--headless=new")
                             // The /dev/shm partition is too small in certain VM environments, causing Chrome to fail
                             // or crash (see http://crbug.com/715363).
                             // Use this flag to work around this issue (a temporary directory will always be used to
@@ -53,9 +51,7 @@ public abstract class AbstractPdf4WcagSelenideConfig {
                             // process won't launch
                             .addArguments("--disable-gpu")
                             // Disable extensions
-                            .addArguments("--disable-extensions")
-                            // Enables web socket connections from the specified origins only. '*' allows any origin.
-                            .addArguments("--remote-allow-origins=*");
+                            .addArguments("--disable-extensions");
                     Configuration.browserCapabilities = chromeOptions;
                 },
                 () -> {
@@ -89,10 +85,6 @@ public abstract class AbstractPdf4WcagSelenideConfig {
         return testProperties.getProperty(propertyName);
     }
 
-    public String getProperty(String propertyName) {
-        return AbstractPdf4WcagSelenideConfig.getInitializedProperty(propertyName);
-    }
-
     public void retryWithCleanMechanism(Runnable start, Runnable clean, int retryCount, long sleep) {
         int attempt = 1;
         while (true) {
@@ -115,7 +107,7 @@ public abstract class AbstractPdf4WcagSelenideConfig {
         try (InputStream is = Files.newInputStream(file.toPath())) {
             properties.load(is);
         } catch (IOException e) {
-            LOGGER.warn("I/O exception on editor properties reading", e);
+            LOGGER.warn("I/O exception on pdf4wcag properties reading", e);
         }
     }
 

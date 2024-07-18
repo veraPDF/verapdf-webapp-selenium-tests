@@ -28,11 +28,6 @@ public abstract class AbstractElement<T> {
         return thisAsT;
     }
 
-    public <R, E extends Throwable> R applyShortcut(FunctionWithThrowing<T, R, E> shortcut) throws E {
-        T thisAsT = (T) this;
-        return shortcut.apply(thisAsT);
-    }
-
     @FunctionalInterface
     public interface ConsumerWithThrowing<T, E extends Throwable> {
         void accept(T t) throws E;
