@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Suite" thread-count="3" parallel="classes">
+    <listeners>
+        <listener class-name="com.duallab.verapdf.utils.Pdf4WcagAutoRetryTransformer"/>
+    </listeners>
+    <test name="Smoke Tests">
+        <packages>
+            <package name="com.duallab.verapdf.tests.smoke.*"/>
+        </packages>
+    </test>
+</suite>
